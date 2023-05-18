@@ -60,7 +60,7 @@ const WeatherApp = () => {
   };
 
   return (
-    <div>
+    <div className='search'>
       <h2>Weather App</h2>
       <div>
         <input
@@ -73,7 +73,7 @@ const WeatherApp = () => {
       </div>
       {error && <p>{error}</p>}
       {temperature && (
-        <div className='search'>
+        <div >
           <h2>{name}</h2>
           <h3>Weather Details</h3>
           <p>Temperature: {temperature}</p>
