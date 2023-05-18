@@ -41,13 +41,6 @@ const WeatherApp = () => {
       });
   };
 
-  const clearSearch = () => {
-    setCity('');
-    setTemperature('');
-    setDescription('');
-    setWeatherIcon('');
-    setError('');
-  };
 
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
@@ -60,7 +53,7 @@ const WeatherApp = () => {
   };
 
   return (
-    <div className='search'>
+    <form className='search'>
       <h2>Weather App</h2>
       <div>
         <input
@@ -81,7 +74,7 @@ const WeatherApp = () => {
           <img src={weatherIcon} alt="Weather Icon" />
         </div>
       )}
-    </div>
+    </form>
   );
 };
 
