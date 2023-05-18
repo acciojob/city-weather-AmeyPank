@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 
 const WeatherApp = () => {
   const [city, setCity] = useState('');
+  const [name, setName] = useState('')
   const [temperature, setTemperature] = useState('');
   const [description, setDescription] = useState('');
   const [weatherIcon, setWeatherIcon] = useState('');
@@ -20,11 +20,14 @@ const WeatherApp = () => {
           const temp = Math.round(data.main.temp - 273.15);
           const desc = data.weather[0].description;
           const icon = data.weather[0].icon;
+          const name = data.name; // Extract the city name from the API response
 
           setTemperature(temp + '°C');
           setDescription(desc);
           setWeatherIcon(`https://openweathermap.org/img/w/${icon}.png`);
           setError('');
+          setName(name)// Update the city name state
+          setCity(''); // Clear the input field
         } else {
           setTemperature('');
           setDescription('');
@@ -38,10 +41,22 @@ const WeatherApp = () => {
       });
   };
 
+  const clearSearch = () => {
+    setCity('');
+    setTemperature('');
+    setDescription('');
+    setWeatherIcon('');
+    setError('');
+  };
+
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
       getWeather();
     }
+  };
+
+  const handleInputChange = event => {
+    setCity(event.target.value);
   };
 
   return (
@@ -51,7 +66,7 @@ const WeatherApp = () => {
         <input
           type="text"
           value={city}
-          onChange={event => setCity(event.target.value)}
+          onChange={handleInputChange}
           onKeyPress={handleKeyPress}
           placeholder="Enter city name"
         />
@@ -59,7 +74,7 @@ const WeatherApp = () => {
       {error && <p>{error}</p>}
       {temperature && (
         <div className='search'>
-          <h2>{city}</h2>
+          <h2>{name}</h2>
           <h3>Weather Details</h3>
           <p>Temperature: {temperature}</p>
           <p>Description: {description}</p>
