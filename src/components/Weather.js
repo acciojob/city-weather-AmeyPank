@@ -66,7 +66,7 @@ const WeatherApp = () => {
       </div>
       {error && <p>{error}</p>}
       {temperature && (
-        <div >
+        <div className='weather'>
           <h2>{name}</h2>
           <h3>Weather Details</h3>
           <p>Temperature: {temperature}</p>
